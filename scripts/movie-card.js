@@ -20,7 +20,7 @@ const movie = {
     "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
   price: "120.00",
 };
-document.addEventListener("DOMContentLoaded", function () {
+function renderMovieCard() {
   const moviesContainer = document.getElementById("movies-container");
 
   function createMovieCard(movie) {
@@ -40,7 +40,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
     return movieCard;
   }
+  function initializeComments(movieId) {
+    const commentSection = document.createElement("div");
+    commentSection.classList.add("comment-section");
 
+    commentSection.innerHTML = `
+            <div class="comment-title">Leave a Comment</div>
+            <form class="comment-form">
+                <textarea id="comment-${movieId}" placeholder="Write your comment here..." class="comment-textarea"></textarea>
+                <div class="comment-btn-wrapper">
+                    <button class="comment-btn" data-movie-id="${movieId}">Submit</button>
+                </div>
+            </form>
+            <ul id="comment-list-${movieId}" class="comment-list"></ul>
+        `;
+    document.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (event.target.classList.contains("comment-btn")) {
+        const movieId = event.target.getAttribute("data-movie-id");
+        const commentInput = document.getElementById(`comment-${movieId}`);
+        const commentList = document.getElementById(`comment-list-${movieId}`);
+
+        if (commentInput && commentList && commentInput.value.trim() !== "") {
+          const newComment = document.createElement("li");
+          newComment.textContent = commentInput.value;
+          commentList.appendChild(newComment);
+          commentInput.value = "";
+        }
+      }
+    });
+    return commentSection;
+  }
   function createActorsSection(actors) {
     const actorsSection = document.createElement("div");
     actorsSection.classList.add("actors-section");
@@ -55,50 +85,15 @@ document.addEventListener("DOMContentLoaded", function () {
     return actorsSection;
   }
 
-  function createCommentSection(movieId) {
-    const commentSection = document.createElement("div");
-    commentSection.classList.add("comment-section");
-
-    commentSection.innerHTML = `
-            <div class="comment-title">Leave a Comment</div>
-            <div class="comment-form">
-                <textarea id="comment-${movieId}" placeholder="Write your comment here..." class="comment-textarea"></textarea>
-                <div class="comment-btn-wrapper">
-                    <button class="comment-btn" data-movie-id="${movieId}">Submit</button>
-                </div>
-            </div>
-            <ul id="comment-list-${movieId}" class="comment-list"></ul>
-        `;
-
-    return commentSection;
-  }
-
   if (moviesContainer) {
     const movieCardElement = createMovieCard(movie);
     const actorsSectionElement = createActorsSection(movie.actors);
-    const commentSectionElement = createCommentSection(movie.id);
+    const commentSectionElement = initializeComments(movie.id);
 
     moviesContainer.appendChild(movieCardElement);
     moviesContainer.appendChild(actorsSectionElement);
     moviesContainer.appendChild(commentSectionElement);
   }
-
-  initializeComments();
-});
-
-function initializeComments() {
-  document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("comment-btn")) {
-      const movieId = event.target.getAttribute("data-movie-id");
-      const commentInput = document.getElementById(`comment-${movieId}`);
-      const commentList = document.getElementById(`comment-list-${movieId}`);
-
-      if (commentInput && commentList && commentInput.value.trim() !== "") {
-        const newComment = document.createElement("li");
-        newComment.textContent = commentInput.value;
-        commentList.appendChild(newComment);
-        commentInput.value = "";
-      }
-    }
-  });
 }
+
+renderMovieCard();
