@@ -1,4 +1,4 @@
-const movies = [
+export const movies = [
   {
     id: 1,
     title: 'Interstellar',
@@ -79,4 +79,4 @@ const movies = [
   }
 ];
 
-export { movies };
+
