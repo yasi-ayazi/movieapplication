@@ -2,7 +2,7 @@ import { movies } from "./data.js";
 import { createCommentSection } from "./comments.js";
 
 function createSearchAndSortBar() {
-  const mainContent = document.querySelector(".main-content");
+  const mainContent = document.getElementById("main");
   const searchSortContainer = document.createElement("div");
   searchSortContainer.classList.add("search-sort");
 
@@ -11,22 +11,22 @@ function createSearchAndSortBar() {
   ];
 
   searchSortContainer.innerHTML = `
-    <div class="search-wrapper">
+    <div class="filter__wrapper">
       <label for="search-input">Search Movies / Actors:</label>
-      <input type="text" id="search-input" placeholder="Search by title or actor..." />
+      <input class="filter__input" type="text" id="search-input" placeholder="Search by title or actor..." />
     </div>
-    <div class="sort-wrapper">
+    <div class="filter__wrapper">
       <label for="sort-select">Sort Movies:</label>
-      <select id="sort-select">
+      <select class="filter__input" id="sort-select">
         <option value="title-asc">Title (A-Z)</option>
         <option value="title-desc">Title (Z-A)</option>
         <option value="year-asc">Year (Oldest First)</option>
         <option value="year-desc">Year (Newest First)</option>
       </select>
     </div>
-    <div class="genre-wrapper">
+    <div class="filter__wrapper">
       <label for="genre-select">Filter by Genre:</label>
-      <select id="genre-select">
+      <select class="filter__input" id="genre-select">
         <option value="all">All Genres</option>
         ${genres
           .map((genre) => `<option value="${genre}">${genre}</option>`)
@@ -62,7 +62,7 @@ function createMovieCard(movie) {
       <p class="movie-date"><strong>Released:</strong> ${movie.movie_year}</p>
       <p class="movie-genre"><strong>Genre:</strong> ${movie.genre
         .split(", ")
-        .map((genre) => `<span class="badge">${genre}</span>`)
+        .map((genre) => `<span class="pill">${genre}</span>`)
         .join(" ")}</p>
       <p class="movie-price"><strong>Price:</strong> $${movie.price}</p>
       <p class="movie-rating"><strong>Rating:</strong> ⭐ ${movie.rating}</p>
