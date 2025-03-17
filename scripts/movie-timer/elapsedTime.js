@@ -1,7 +1,19 @@
 export function trackElapsedTime() {
     const start = new Date();
-    const mainDoc = document.getElementById("main") || document.body;
-    const labelDoc = document.createElement("label");
+    let timeSpentLabel = document.getElementById("time-spent");
+
+    // If the label does not exist, create it
+    if (!timeSpentLabel) {
+        timeSpentLabel = document.createElement("label");
+        timeSpentLabel.setAttribute("id", "time-spent");
+        timeSpentLabel.textContent = "You spent time on this page: 00:00";
+        
+        // Find the sidebar and append the label
+        const sidebar = document.querySelector(".timer-sidebar");
+        if (sidebar) {
+            sidebar.insertBefore(timeSpentLabel, sidebar.firstChild);
+        }
+    }
 
     function pad(num) {
         return ("0" + parseInt(num)).slice(-2);
@@ -9,17 +21,13 @@ export function trackElapsedTime() {
 
     function tick() {
         const now = new Date();
-        if (now < start) {
-            start.setDate(start.getDate() - 1);
-        }
         let remain = (now - start) / 1000;
         let hh = pad((remain / 60 / 60) % 60);
         let mm = pad((remain / 60) % 60);
         let ss = pad(remain % 60);
-        let diff = hh + ":" + mm + ":" + ss;
+        let diff = `${hh}:${mm}:${ss}`;
 
-        labelDoc.innerHTML = diff;
-        mainDoc.appendChild(labelDoc);
+        timeSpentLabel.textContent = `You spent time on this page: ${diff}`;
         setTimeout(tick, 1000);
     }
 
