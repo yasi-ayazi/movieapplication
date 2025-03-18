@@ -1,22 +1,17 @@
 let timer;
-let countdownDisplay;
+const alarmSound = new Audio("././assets/alarm.wav");
+
 export function startTimer(hour, minute) {
   let totalSeconds = parseInt(hour) * 3600 + parseInt(minute) * 60;
   if (totalSeconds === 0) return;
 
-  // Reset previous timer if it exists
   if (timer) {
     clearInterval(timer);
   }
 
-  // Remove previous countdown display if it exists
-  if (countdownDisplay) {
-    countdownDisplay.remove();
-  }
-
-  // Create new countdown display
-  countdownDisplay = document.createElement("h3");
-  document.body.appendChild(countdownDisplay);
+  // Get existing countdown display from UI
+  const countdownDisplay = document.querySelector(".countdown-timer");
+  if (!countdownDisplay) return; // Prevent errors if UI is missing
 
   function formatTime(seconds) {
     const hh = String(Math.floor(seconds / 3600)).padStart(2, "0");
@@ -36,6 +31,13 @@ export function startTimer(hour, minute) {
     if (totalSeconds <= 0) {
       clearInterval(timer);
       countdownDisplay.textContent = "Time's up!";
+
+      // 🔔 Play alarm sound
+      alarmSound.play();
+
+      // ⏳ Reset dropdowns to "0 Hour" and "0 Minute"
+      document.querySelector(".hour-select").value = 0;
+      document.querySelector(".minute-select").value = 0;
     } else {
       render(totalSeconds);
     }
