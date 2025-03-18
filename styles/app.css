@@ -38,7 +38,7 @@ label {
 
 .movies-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 15px;
 }
 
@@ -122,7 +122,6 @@ label {
   color: #032541;
 }
 
-
 .timer-sidebar .time-spent {
   font-size: 14px;
   font-weight: bold;
@@ -187,7 +186,6 @@ label {
   background: #b02a37;
 }
 
-/* Responsive Sidebar */
 @media screen and (max-width: 900px) {
   .timer-sidebar {
     transform: translateX(-100%);
