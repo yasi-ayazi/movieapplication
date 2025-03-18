@@ -1,5 +1,8 @@
 import { renderMovies, createSearchAndSortBar } from "./movie-home/render.js";
-import { handleCommentToggle, handleCommentSubmission } from "./movie-home/comments.js";
+import {
+  handleCommentToggle,
+  handleCommentSubmission,
+} from "./movie-home/comments.js";
 import { filterAndSortMovies } from "./movie-home/filters.js";
 import { movies } from "./movie-home/data.js";
 import { initTimerUI } from "./movie-timer/ui.js";
@@ -22,8 +25,5 @@ document.addEventListener("click", handleCommentToggle);
 document.addEventListener("click", handleCommentSubmission);
 
 //timer
-    // Initialize the UI
-    initTimerUI();
-
-    // Start tracking elapsed time
-    trackElapsedTime();
+initTimerUI();
+trackElapsedTime();
