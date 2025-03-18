@@ -8,7 +8,8 @@ function filterAndSortMovies() {
     .value.toLowerCase();
   const sortOption = document.getElementById("sort-select").value;
   const selectedGenre = document.getElementById("genre-select").value;
-// Filter movies base on title or acters or genre
+
+  // Filter movies base on title or acters or genre
   const filteredMovies = movies.filter(
     (movie) =>
       (movie.title.toLowerCase().includes(searchQuery) ||
@@ -32,11 +33,11 @@ function filterAndSortMovies() {
       filteredMovies.sort((a, b) => b.movie_year - a.movie_year);
       break;
   }
-  if (filteredMovies.length === 0) {  
-    const moviesContainer = document.getElementById("movies-container");  
-    moviesContainer.innerHTML = "<p>No movies found</p>";  
-    return;  
-  }  
+  if (filteredMovies.length === 0) {
+    const moviesContainer = document.getElementById("movies-container");
+    moviesContainer.innerHTML = "<p>No movies found</p>";
+    return;
+  }
 
   renderMovies(filteredMovies);
 }

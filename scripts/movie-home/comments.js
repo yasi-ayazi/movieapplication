@@ -22,7 +22,7 @@ function handleCommentToggle(event) {
     document.querySelectorAll(".comment-section").forEach((section) => {
       if (section.id !== `comment-section-${movieId}`) {
         section.style.display = "none";
-        section.previousElementSibling.innerHTML = "Show Comments"; 
+        section.previousElementSibling.innerHTML = "Show Comments";
       }
     });
 
