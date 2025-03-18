@@ -2,7 +2,7 @@ import { startTimer } from "./timer.js";
 import { trackElapsedTime } from "./elapsedTime.js";
 
 //UI initialization along with sidebar element addition
-function initTimerUI() {
+export function initTimerUI() {
   if (document.querySelector(".timer-sidebar")) return;
 
   const sidebar = document.createElement("div");
@@ -28,7 +28,7 @@ function initTimerUI() {
   timerControls.appendChild(countdownTitle);
 
   const hourDropdown = createDropdown("hour", [0, 1, 2, 3]);
-  const minuteDropdown = createDropdown("minute", [0, 5, 10, 15, 30, 45]);
+  const minuteDropdown = createDropdown("minute", [0,1, 5, 10, 15, 30, 45]);
 
   // Countdown display
   const countdownDisplay = document.createElement("div");
@@ -80,4 +80,3 @@ function createButton(className, text, onClick) {
   return button;
 }
 
-export { initTimerUI };
