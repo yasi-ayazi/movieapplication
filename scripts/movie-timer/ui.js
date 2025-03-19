@@ -54,6 +54,7 @@ export function initTimerUI() {
   );
   sidebar.appendChild(timerControls);
   document.body.appendChild(sidebar);
+  initSidebarToggle();
 }
 
 function createDropdown(className, options) {
@@ -79,4 +80,31 @@ function createButton(className, text, onClick) {
   button.addEventListener("click", onClick);
   return button;
 }
+
+// Hamburger button on mobile
+
+export function initSidebarToggle() {
+  const sidebar = document.querySelector(".timer-sidebar");
+
+  if (!sidebar) {
+    console.error("Sidebar not found in the DOM.");
+    return; 
+  }
+  document.body.appendChild(sidebar);
+  const toggleButton = document.createElement("button");
+  toggleButton.classList.add("sidebar-toggle");
+  toggleButton.innerHTML = "Timer";
+  document.body.appendChild(toggleButton);
+
+ 
+  toggleButton.addEventListener("click", () => {
+    sidebar.classList.toggle("active");
+    if (sidebar.classList.contains("active")) {
+      sidebar.style.transform = "translateX(0)";
+    } else {
+      sidebar.style.transform = "translateX(-100%)";
+    }
+  });
+}
+
 
