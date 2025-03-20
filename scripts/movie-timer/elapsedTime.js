@@ -15,7 +15,7 @@ export function trackElapsedTime() {
   }
 
   function pad(num) {
-    return ("0" + parseInt(num)).slice(-2);
+    return num.toString().padStart(2, '0')
   }
 
   function tick() {
