@@ -12,6 +12,8 @@ This is a **Movie Listing & Search App** built as a learning project for **HackY
 - 🔄 Sort movies by **title (A-Z, Z-A) or year (oldest, newest)**.
 - 🎭 Filter movies by **genre** using a dropdown.
 - 💬 Toggle and add **comments** to each movie.
+- ⏳ **Session tracking to show time spent on the page.**
+- ⏲️ **Countdown timer for setting a time limit to pick a movie.**
 
 ## 🚀 Technologies Used
 - ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
@@ -22,15 +24,16 @@ This is a **Movie Listing & Search App** built as a learning project for **HackY
 ```
 📺 movie-app
  ├ 📂 scripts
- ┃ ├ 📋 app.js           # Main application logic (event listeners & app initialization)
- ┃ ├ 📋 data.js          # Movie data (structured objects)
- ┃ ├ 📋 render.js        # UI rendering (creates movie cards dynamically)
- ┃ ├ 📋 filters.js       # Search & sorting logic
- ┃ ├ 📋 comments.js      # Handles comment toggling & submission
+ ┃ ├ 📂 movie-home
+ ┃ ├ 📂 movie-timer        # NEW - Timer functionality
+ ┃ ┃ ├ 📋 elapsedTime.js   # Tracks session duration
+ ┃ ┃ ├ 📋 timer.js         # Implements countdown timer
+ ┃ ┃ ├ 📋 ui.js            # Manages UI for timers
+ ┃ ├ 📋 app.js             # Main application logic (event listeners & app initialization)
  ├ 📂 styles
- ┃ ├ 📋 app.css          # Styling for the entire application
- ├ 📋 index.html         # HTML structure
- ├ 📋 README.md          # Project documentation
+ ┃ ├ 📋 app.css            # Styling for the entire application
+ ├ 📋 index.html           # HTML structure
+ ├ 📋 README.md            # Project documentation
 ```
 
 ---
@@ -66,6 +69,16 @@ _(Requires Node.js installed)_
 - Each movie has a **toggle button** for comments.
 - Users can **add comments**, which persist on the page.
 
+### ⏳ **Session Tracking (New Feature)**
+- A **session timer** has been added to track how long the user spends on the page.
+- Displayed in the **sidebar** on the left.
+- Implemented in **`elapsedTime.js`** and managed by **`ui.js`**.
+
+### ⏲️ **Countdown Timer for Movie Selection (New Feature)**
+- Users can **set a timer** to limit the time they spend choosing a movie.
+- When the countdown reaches zero, an **alert rings**.
+- Implemented in **`timer.js`**, with UI management in **`ui.js`**.
+
 ---
 
 ## 📌 How It Works
@@ -81,15 +94,13 @@ _(Requires Node.js installed)_
 - **`comments.js`** handles comment toggling and submission.
 - Only the **clicked movie’s comments** are shown (others remain hidden).
 
----
+### ⏳ **Session Timer**
+- **`elapsedTime.js`** tracks and updates the session duration.
+- The time spent on the page is displayed in the **sidebar** using **`ui.js`**.
 
-## 🏰 Future Enhancements
-This project is designed to be **extendable** for learning purposes. Some planned features include:
-- ✅ **Persisting Comments** (Save them in `localStorage` or a backend).
-- ✅ **Movie Details Page** (Click on a movie to see a detailed page).
-- ✅ **Add Movies Feature** (Form to allow users to add new movies).
-- ✅ **User Ratings** (Users can rate movies).
-- ✅ **Dark Mode Support**.
+### ⏲️ **Movie Selection Countdown**
+- **`timer.js`** allows users to set a custom countdown.
+- The countdown UI is updated in **`ui.js`**, and an **alert is triggered** when time runs out.
 
 ---
 
