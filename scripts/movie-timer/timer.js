@@ -1,7 +1,19 @@
 let timer;
 const alarmSound = new Audio("././assets/alarm.wav");
 
-export function startTimer(hour, minute) {
+function formatTime(seconds) {
+  const hh = String(Math.floor(seconds / 3600)).padStart(2, "0");
+  const mm = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+  const ss = String(seconds % 60).padStart(2, "0");
+  return `${hh}:${mm}:${ss}`;
+}
+
+function render(seconds) {
+  let countdownDisplay = document.querySelector(".countdown-timer");
+  countdownDisplay.textContent = `Remaining Time: ${formatTime(seconds)}`;
+}
+
+function startTimer(hour, minute) {
   let totalSeconds = parseInt(hour) * 3600 + parseInt(minute) * 60;
   if (totalSeconds === 0) return;
 
@@ -10,19 +22,8 @@ export function startTimer(hour, minute) {
   }
 
   // Get existing countdown display from UI
-  const countdownDisplay = document.querySelector(".countdown-timer");
+  let countdownDisplay = document.querySelector(".countdown-timer");
   if (!countdownDisplay) return; // Prevent errors if UI is missing
-
-  function formatTime(seconds) {
-    const hh = String(Math.floor(seconds / 3600)).padStart(2, "0");
-    const mm = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
-    const ss = String(seconds % 60).padStart(2, "0");
-    return `${hh}:${mm}:${ss}`;
-  }
-
-  function render(seconds) {
-    countdownDisplay.textContent = `Remaining Time: ${formatTime(seconds)}`;
-  }
 
   render(totalSeconds);
 
@@ -43,3 +44,5 @@ export function startTimer(hour, minute) {
     }
   }, 1000);
 }
+
+export { startTimer, formatTime };

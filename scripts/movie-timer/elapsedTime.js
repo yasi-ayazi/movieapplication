@@ -1,3 +1,4 @@
+import { formatTime } from "./timer.js";
 export function trackElapsedTime() {
   const start = new Date();
   let timeSpentLabel = document.getElementById("time-spent");
@@ -15,16 +16,13 @@ export function trackElapsedTime() {
   }
 
   function pad(num) {
-    return num.toString().padStart(2, '0')
+    return num.toString().padStart(-2, '0') 
   }
 
   function tick() {
     const now = new Date();
-    let remain = (now - start) / 1000;
-    let hh = pad((remain / 60 / 60) % 60);
-    let mm = pad((remain / 60) % 60);
-    let ss = pad(remain % 60);
-    let diff = `${hh}:${mm}:${ss}`;
+    let remain = Math.round((now - start) / 1000);
+    let diff = formatTime(remain);
 
     timeSpentLabel.textContent = `You spent time on this page: ${diff}`;
     setTimeout(tick, 1000);
