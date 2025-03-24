@@ -4,26 +4,33 @@ import {
   handleCommentSubmission,
 } from "./movie-home/comments.js";
 import { filterAndSortMovies } from "./movie-home/filters.js";
-import { movies } from "./movie-home/data.js";
+import { fetchMovies } from "./movie-home/data-fetcher.js";
 import { initTimerUI } from "./movie-timer/ui.js";
 import { trackElapsedTime } from "./movie-timer/elapsedTime.js";
 
-createSearchAndSortBar();
+let allMovies = [];
 
-renderMovies(movies);
+async function initApp() {
+  allMovies = await fetchMovies();
+
+  createSearchAndSortBar(allMovies);
+  renderMovies(allMovies);
 
 document
   .getElementById("sort-select")
-  .addEventListener("change", filterAndSortMovies);
+  .addEventListener("change", () => filterAndSortMovies(allMovies));
 document
   .getElementById("search-input")
-  .addEventListener("input", filterAndSortMovies);
+  .addEventListener("input", () => filterAndSortMovies(allMovies));
 document
   .getElementById("genre-select")
-  .addEventListener("change", filterAndSortMovies);
+  .addEventListener("change", () => filterAndSortMovies(allMovies));
 document.addEventListener("click", handleCommentToggle);
 document.addEventListener("click", handleCommentSubmission);
 
 //timer
 initTimerUI();
 trackElapsedTime();
+}
+
+initApp();
