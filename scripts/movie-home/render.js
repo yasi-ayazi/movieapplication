@@ -1,7 +1,6 @@
-import { movies } from "./data.js";
 import { createCommentSection } from "./comments.js";
 
-function createSearchAndSortBar() {
+function createSearchAndSortBar(movies) {
   const mainContent = document.getElementById("main");
   const searchSortContainer = document.createElement("div");
   searchSortContainer.classList.add("search-sort");
