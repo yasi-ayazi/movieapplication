@@ -1,8 +1,7 @@
-import { movies } from "./data.js";
 import { renderMovies } from "./render.js";
 
 // Filters and sorts movies based on user input.
-function filterAndSortMovies() {
+function filterAndSortMovies(movies) {
   const searchQuery = document
     .getElementById("search-input")
     .value.toLowerCase();
