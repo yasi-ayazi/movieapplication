@@ -16,21 +16,21 @@ async function initApp() {
   createSearchAndSortBar(allMovies);
   renderMovies(allMovies);
 
-document
-  .getElementById("sort-select")
-  .addEventListener("change", () => filterAndSortMovies(allMovies));
-document
-  .getElementById("search-input")
-  .addEventListener("input", () => filterAndSortMovies(allMovies));
-document
-  .getElementById("genre-select")
-  .addEventListener("change", () => filterAndSortMovies(allMovies));
-document.addEventListener("click", handleCommentToggle);
-document.addEventListener("click", handleCommentSubmission);
+  document
+    .getElementById("sort-select")
+    .addEventListener("change", () => filterAndSortMovies(allMovies));
+  document
+    .getElementById("search-input")
+    .addEventListener("input", () => filterAndSortMovies(allMovies));
+  document
+    .getElementById("genre-select")
+    .addEventListener("change", () => filterAndSortMovies(allMovies));
+  document.addEventListener("click", handleCommentToggle);
+  document.addEventListener("click", handleCommentSubmission);
 
-//timer
-initTimerUI();
-trackElapsedTime();
+  //timer
+  initTimerUI();
+  trackElapsedTime();
 }
 
 initApp();
