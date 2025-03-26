@@ -6,7 +6,9 @@
 ![GitHub license](https://img.shields.io/github/license/yasi-ayazi/movieapplication)
 
 ## 📌 Overview
-This is a **Movie Listing & Search App** built as a learning project for **HackYourFuture**. The application allows users to:
+This is a **Movie Listing & Search App** built as a learning project for **HackYourFuture**. Now uses dynamic movie data fetched from an external JSON file hosted on GitHub – simulating a real API.
+
+The application allows users to:
 - 📌 Browse a list of movies with details (title, director, actors, genre, price, rating, and description).
 - 🔎 Search movies by **title, actor, or genre**.
 - 🔄 Sort movies by **title (A-Z, Z-A) or year (oldest, newest)**.
@@ -29,6 +31,7 @@ This is a **Movie Listing & Search App** built as a learning project for **HackY
  ┃ ┃ ├ 📋 elapsedTime.js   # Tracks session duration
  ┃ ┃ ├ 📋 timer.js         # Implements countdown timer
  ┃ ┃ ├ 📋 ui.js            # Manages UI for timers
+ ┃ ├ 📋 data-fetcher.js    # Fetches movies from external JSON file
  ┃ ├ 📋 app.js             # Main application logic (event listeners & app initialization)
  ├ 📂 styles
  ┃ ├ 📋 app.css            # Styling for the entire application
@@ -83,7 +86,7 @@ _(Requires Node.js installed)_
 
 ## 📌 How It Works
 ### 🗼 **Rendering Movies**
-- The movies are stored in **`data.js`** as an array of objects.
+- The movies are now stored in a **`data.json`** file hosted on GitHub and fetched dynamically using the `fetchMovies()` function in `data-fetcher.js`.
 - The app dynamically creates movie cards using **`render.js`**.
 
 ### 🔄 **Search, Filter, and Sort**
