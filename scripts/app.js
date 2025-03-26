@@ -8,10 +8,9 @@ import { fetchMovies } from "./movie-home/data-fetcher.js";
 import { initTimerUI } from "./movie-timer/ui.js";
 import { trackElapsedTime } from "./movie-timer/elapsedTime.js";
 
-let allMovies = [];
 
 async function initApp() {
-  allMovies = await fetchMovies();
+  const allMovies = await fetchMovies();
 
   createSearchAndSortBar(allMovies);
   renderMovies(allMovies);
