@@ -31,10 +31,6 @@ async function initApp() {
   initTimerUI();
   trackElapsedTime();
   createDarkModeToggle();
-
 }
 
-
 initApp();
-
-
