@@ -7,7 +7,7 @@ import { filterAndSortMovies } from "./movie-home/filters.js";
 import { fetchMovies } from "./movie-home/data-fetcher.js";
 import { initTimerUI } from "./movie-timer/ui.js";
 import { trackElapsedTime } from "./movie-timer/elapsedTime.js";
-
+import { createDarkModeToggle } from "./movie-timer/ui.js";
 
 async function initApp() {
   const allMovies = await fetchMovies();
@@ -30,6 +30,11 @@ async function initApp() {
   //timer
   initTimerUI();
   trackElapsedTime();
+  createDarkModeToggle();
+
 }
 
+
 initApp();
+
+
