@@ -28,7 +28,7 @@ export function initTimerUI() {
   timerControls.appendChild(countdownTitle);
 
   const hourDropdown = createDropdown("hour", [0, 1, 2, 3]);
-  const minuteDropdown = createDropdown("minute", [0,1, 5, 10, 15, 30, 45]);
+  const minuteDropdown = createDropdown("minute", [0, 1, 5, 10, 15, 30, 45]);
 
   // Countdown display
   const countdownDisplay = document.createElement("div");
@@ -88,7 +88,7 @@ export function initSidebarToggle() {
 
   if (!sidebar) {
     console.error("Sidebar not found in the DOM.");
-    return; 
+    return;
   }
   document.body.appendChild(sidebar);
   const toggleButton = document.createElement("button");
@@ -96,7 +96,6 @@ export function initSidebarToggle() {
   toggleButton.innerHTML = "Timer";
   document.body.appendChild(toggleButton);
 
- 
   toggleButton.addEventListener("click", () => {
     sidebar.classList.toggle("active");
     if (sidebar.classList.contains("active")) {
@@ -107,4 +106,26 @@ export function initSidebarToggle() {
   });
 }
 
+// Dark mode toggle
 
+export function createDarkModeToggle() {
+  const sidebar = document.querySelector(".timer-sidebar");
+  if (!sidebar) return;
+
+  const toggleWrapper = document.createElement("div");
+  toggleWrapper.className = "theme-toggle-wrapper";
+
+  toggleWrapper.innerHTML = `
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider"></span>
+    </label>
+  `;
+
+  sidebar.insertBefore(toggleWrapper, sidebar.firstChild);
+
+  const toggle = toggleWrapper.querySelector("#theme-toggle");
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+}
